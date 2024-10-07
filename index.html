@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAM2 DEMO W11</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>SAM2 DEMO W11</h1>
+    </header>
+    <main>
+        <section id="server-controls">
+            <h2>Server Controls</h2>
+            <button id="start-server">Start Server</button>
+            <button id="stop-server">Stop Server</button>
+            <select id="server-mode">
+                <option value="lan">LAN Mode</option>
+                <option value="local">Local-only Mode</option>
+            </select>
+        </section>
+        <section id="webcam-controls">
+            <h2>Webcam Controls</h2>
+            <select id="webcam-select">
+                <!-- Webcam options will be populated dynamically -->
+            </select>
+        </section>
+        <section id="ip-display">
+            <h2>IP Address</h2>
+            <p id="ip-address">Loading...</p>
+        </section>
+        <section id="advanced-console">
+            <h2>Advanced Console</h2>
+            <div id="console-output"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 SAM2 DEMO W11</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
