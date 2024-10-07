@@ -1,11 +1,12 @@
 import sys
+import socket
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QComboBox
 
 class SAM2Demo(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("SAM2 DEMO W11")
-        self.setGeometry(100, 100, 400, 300)
+        self.setGeometry(100, 100, 400, 350)
 
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
@@ -39,14 +40,19 @@ class SAM2Demo(QMainWindow):
         self.status_label = QLabel("Server Status: Stopped")
         layout.addWidget(self.status_label)
 
+        self.ip_label = QLabel("IP Address: Not available")
+        layout.addWidget(self.ip_label)
+
         central_widget.setLayout(layout)
 
     def start_server(self):
         self.status_label.setText("Server Status: Running")
+        self.update_ip_address()
         print("Server started")
 
     def stop_server(self):
         self.status_label.setText("Server Status: Stopped")
+        self.ip_label.setText("IP Address: Not available")
         print("Server stopped")
 
     def change_mode(self, index):
@@ -54,6 +60,15 @@ class SAM2Demo(QMainWindow):
 
     def change_webcam(self, index):
         pass
+
+    def update_ip_address(self):
+        try:
+            hostname = socket.gethostname()
+            ip_address = socket.gethostbyname(hostname)
+            self.ip_label.setText(f"IP Address: {ip_address}")
+        except Exception as e:
+            print(f"Error getting IP address: {e}")
+            self.ip_label.setText("IP Address: Unable to retrieve")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
