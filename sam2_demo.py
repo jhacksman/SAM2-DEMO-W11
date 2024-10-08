@@ -59,7 +59,20 @@ class SAM2Demo(QMainWindow):
     def change_mode(self, index):
         mode = self.mode_combo.currentText()
         print(f"Server mode changed to: {mode}")
-        # TODO: Implement actual mode change logic
+        if mode == "LAN":
+            self.configure_lan_mode()
+        else:  # Local-only
+            self.configure_local_only_mode()
+
+    def configure_lan_mode(self):
+        # TODO: Implement LAN mode configuration
+        # For example, bind to all available network interfaces
+        print("Configuring LAN mode: Server will be accessible from other devices on the network")
+
+    def configure_local_only_mode(self):
+        # TODO: Implement Local-only mode configuration
+        # For example, bind only to localhost
+        print("Configuring Local-only mode: Server will be accessible only from this device")
 
     def change_webcam(self, index):
         webcam = self.webcam_combo.currentText()
