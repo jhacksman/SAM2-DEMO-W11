@@ -57,10 +57,14 @@ class SAM2Demo(QMainWindow):
         print("Server stopped")
 
     def change_mode(self, index):
-        pass
+        mode = self.mode_combo.currentText()
+        print(f"Server mode changed to: {mode}")
+        # TODO: Implement actual mode change logic
 
     def change_webcam(self, index):
-        pass
+        webcam = self.webcam_combo.currentText()
+        print(f"Webcam changed to: {webcam}")
+        # TODO: Implement actual webcam change logic
 
     def update_ip_address(self):
         try:
