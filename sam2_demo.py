@@ -1,5 +1,6 @@
 import sys
 import socket
+import requests
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QComboBox
 
 class SAM2Demo(QMainWindow):
@@ -63,9 +64,12 @@ class SAM2Demo(QMainWindow):
 
     def update_ip_address(self):
         try:
-            hostname = socket.gethostname()
-            ip_address = socket.gethostbyname(hostname)
-            self.ip_label.setText(f"IP Address: {ip_address}")
+            response = requests.get('https://api.ipify.org')
+            if response.status_code == 200:
+                ip_address = response.text
+                self.ip_label.setText(f"IP Address: {ip_address}")
+            else:
+                raise Exception(f"Failed to get IP address. Status code: {response.status_code}")
         except Exception as e:
             print(f"Error getting IP address: {e}")
             self.ip_label.setText("IP Address: Unable to retrieve")
