@@ -1,5 +1,15 @@
 import sys
+import cv2
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QComboBox
+
+def list_available_webcams():
+    available_webcams = []
+    for i in range(10):  # Check the first 10 indexes
+        cap = cv2.VideoCapture(i)
+        if cap.isOpened():
+            available_webcams.append(f"Webcam {i}")
+            cap.release()
+    return available_webcams
 
 class SAM2Demo(QMainWindow):
     def __init__(self):
@@ -32,7 +42,7 @@ class SAM2Demo(QMainWindow):
         layout.addWidget(self.webcam_label)
 
         self.webcam_combo = QComboBox()
-        self.webcam_combo.addItems(["Webcam 1", "Webcam 2"])  # Placeholder webcams
+        self.webcam_combo.addItems(list_available_webcams())
         self.webcam_combo.currentIndexChanged.connect(self.change_webcam)
         layout.addWidget(self.webcam_combo)
 
